@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Minhas coisas\\Projetos viasula studio\\Projeto Banco\\BancoApp\\BancoApp\\BancoApp.csproj": {}
+    "D:\\Minhas coisas\\Projetos viasula studio\\SharpCoders\\Projeto Banco\\BancoApp\\BancoApp\\BancoApp.csproj": {}
   },
   "projects": {
-    "D:\\Minhas coisas\\Projetos viasula studio\\Projeto Banco\\BancoApp\\BancoApp\\BancoApp.csproj": {
+    "D:\\Minhas coisas\\Projetos viasula studio\\SharpCoders\\Projeto Banco\\BancoApp\\BancoApp\\BancoApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Minhas coisas\\Projetos viasula studio\\Projeto Banco\\BancoApp\\BancoApp\\BancoApp.csproj",
+        "projectUniqueName": "D:\\Minhas coisas\\Projetos viasula studio\\SharpCoders\\Projeto Banco\\BancoApp\\BancoApp\\BancoApp.csproj",
         "projectName": "BancoApp",
-        "projectPath": "D:\\Minhas coisas\\Projetos viasula studio\\Projeto Banco\\BancoApp\\BancoApp\\BancoApp.csproj",
+        "projectPath": "D:\\Minhas coisas\\Projetos viasula studio\\SharpCoders\\Projeto Banco\\BancoApp\\BancoApp\\BancoApp.csproj",
         "packagesPath": "C:\\Users\\lenna\\.nuget\\packages\\",
-        "outputPath": "D:\\Minhas coisas\\Projetos viasula studio\\Projeto Banco\\BancoApp\\BancoApp\\obj\\",
+        "outputPath": "D:\\Minhas coisas\\Projetos viasula studio\\SharpCoders\\Projeto Banco\\BancoApp\\BancoApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
