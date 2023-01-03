@@ -42,17 +42,25 @@ namespace BancoApp
             }
         }
 
-        static void NumeroDeusuariosBanco(List<string> cpfs)
+        static void NumeroDeusuariosBanco(List<string> cpfs, List<double> saldos)
         {
             int numerocpfs = cpfs.Count;
             Console.WriteLine($"A quantidade de usuários no banco é: {numerocpfs}");
+            double saldototal = 0;
+
+            for (int i = 0; i < cpfs.Count; i++)
+            {
+                saldototal += saldos[i];
+            }
+            Console.WriteLine($"Dinheiro total no banco = R${saldototal}");
 
         }
 
-        static void DeletarUsuario(List<string> cpfs, List<string> senhas)
+        static void DeletarUsuario(List<string> cpfs, List<string> titulares, List<double> saldos, List<string> senhas)
         {
             Console.WriteLine("Digite o cpf que deseja excluir: ");
             string cpfparaexcluir = Console.ReadLine();
+            int u = cpfs.IndexOf(cpfparaexcluir);
 
             if (cpfs.Contains(cpfparaexcluir))
             {
@@ -76,7 +84,11 @@ namespace BancoApp
 
                         confirmarsenha = Console.ReadLine();
                     } while (!senhas.Contains(confirmarsenha));
-                    cpfs.Remove(cpfparaexcluir);
+
+                    cpfs.Remove(cpfs[u]);
+                    senhas.Remove(senhas[u]);
+                    titulares.Remove(titulares[u]);
+                    saldos.Remove(saldos[u]);
                     Console.WriteLine("Conta Cancelada Com Sucesso");
                 }
 
@@ -302,7 +314,7 @@ namespace BancoApp
                         RegistrasUsuario(cpfs, titulares, saldos, senhas);
                         break;
                     case "2":
-                        DeletarUsuario(cpfs, senhas);
+                        DeletarUsuario(cpfs, titulares, saldos, senhas);
                         break;
                     case "3":
                         ListarTodasAsContas(cpfs, titulares, saldos);
@@ -311,7 +323,7 @@ namespace BancoApp
                         DetalhesUsuario(cpfs, titulares, saldos, senhas);
                         break;
                     case "5":
-                        NumeroDeusuariosBanco(cpfs);
+                        NumeroDeusuariosBanco(cpfs,saldos);
                         break;
                     case "6":
                         ManipularConta(cpfs, titulares, saldos, senhas);
