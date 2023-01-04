@@ -25,7 +25,22 @@ namespace BancoApp
         {
             Console.WriteLine("Digite o cpf: ");
 
-            cpfs.Add(Console.ReadLine());
+            string cpfregistro = Console.ReadLine();
+
+            if (cpfs.Contains(cpfregistro))
+            {
+                do
+                {
+                    Console.Write("CPF ja cadastrado, digite um válido: ");
+                    cpfregistro = Console.ReadLine();
+                }  while(cpfs.Contains(cpfregistro));         
+                
+
+            }
+           
+              cpfs.Add(cpfregistro);
+
+           
             Console.WriteLine("Digite o nome: ");
             titulares.Add(Console.ReadLine());
             Console.Write("Crie sua senha: ");
@@ -38,7 +53,7 @@ namespace BancoApp
         {
             for (int i = 0; i < cpfs.Count; i++)
             {
-                Console.WriteLine($"CPF = {cpfs[i]} | Titulares = {titulares[i]} | Saldo = {saldos[i]}");
+                Console.WriteLine($"CPF = {cpfs[i]} | Titulares = {titulares[i]} | Saldo = {saldos[i]:f2}");
             }
         }
 
@@ -52,7 +67,7 @@ namespace BancoApp
             {
                 saldototal += saldos[i];
             }
-            Console.WriteLine($"Dinheiro total no banco = R${saldototal}");
+            Console.WriteLine($"Dinheiro total no banco = R${saldototal:f2}");
 
         }
 
@@ -62,37 +77,53 @@ namespace BancoApp
             string cpfparaexcluir = Console.ReadLine();
             int u = cpfs.IndexOf(cpfparaexcluir);
 
-            if (cpfs.Contains(cpfparaexcluir))
+
+            if (saldos[u]!=0) {
+
+                Console.WriteLine("o saldo da conta precisa estar zerado pra realizar o cancelamento da conta.");
+            
+            }
+            else
             {
-                Console.Write("Digite sua senha para confirmar a remoção da sua conta: ");
-                Console.WriteLine();
-
-                string confirmarsenha = Console.ReadLine();
-                if (senhas.Contains(confirmarsenha))
+                if (cpfs.Contains(cpfparaexcluir))
                 {
-                    cpfs.Remove(cpfparaexcluir);
-                    Console.WriteLine("Conta Cancelada Com Sucesso");
+                    Console.Write("Digite sua senha para confirmar a remoção da sua conta: ");
                     Console.WriteLine();
-                }
-                else
-                {
-                    Console.WriteLine("Senha incorreta tente novamente");
-                    do
+
+                    string confirmarsenha = Console.ReadLine();
+                    if (senhas.Contains(confirmarsenha))
                     {
-                        Console.Write("Digite sua senha para confirmar a remoção da sua conta: ");
+
+                        Console.WriteLine("Conta Cancelada Com Sucesso");
                         Console.WriteLine();
+                        cpfs.Remove(cpfs[u]);
+                        senhas.Remove(senhas[u]);
+                        titulares.Remove(titulares[u]);
+                        saldos.Remove(saldos[u]);
 
-                        confirmarsenha = Console.ReadLine();
-                    } while (!senhas.Contains(confirmarsenha));
+                    }
+                    else
+                    {
+                        Console.WriteLine("Senha incorreta tente novamente");
+                        do
+                        {
+                            Console.Write("Digite sua senha para confirmar a remoção da sua conta: ");
+                            Console.WriteLine();
 
-                    cpfs.Remove(cpfs[u]);
-                    senhas.Remove(senhas[u]);
-                    titulares.Remove(titulares[u]);
-                    saldos.Remove(saldos[u]);
-                    Console.WriteLine("Conta Cancelada Com Sucesso");
-                }
+                            confirmarsenha = Console.ReadLine();
+                        } while (!senhas.Contains(confirmarsenha));
 
-            };
+                        cpfs.Remove(cpfs[u]);
+                        senhas.Remove(senhas[u]);
+                        titulares.Remove(titulares[u]);
+                        saldos.Remove(saldos[u]);
+                        Console.WriteLine("Conta Cancelada Com Sucesso");
+                    }
+
+                };
+
+            }
+            
 
         }
 
@@ -111,7 +142,7 @@ namespace BancoApp
                 {
                     int u = cpfs.IndexOf(consulta);
 
-                    Console.WriteLine($"CPF = {cpfs[u]} | Titulares = {titulares[u]} | Saldo = {saldos[u]} | Senha = {senhas[u]}");
+                    Console.WriteLine($"CPF = {cpfs[u]} | Titulares = {titulares[u]} | Saldo = {saldos[u]:f2} | Senha = {senhas[u]}");
 
                 }
                 else
@@ -126,7 +157,7 @@ namespace BancoApp
                     } while (!senhas.Contains(confirmarsenha));
                     int u = cpfs.IndexOf(consulta);
 
-                    Console.WriteLine($"CPF = {cpfs[u]} | Titulares = {titulares[u]} | Saldo = {saldos[u]} | Senha = {senhas[u]}");
+                    Console.WriteLine($"CPF = {cpfs[u]} | Titulares = {titulares[u]} | Saldo = {saldos[u]:f2} | Senha = {senhas[u]}");
 
                 }
 
@@ -158,7 +189,7 @@ namespace BancoApp
 
                 int u = cpfs.IndexOf(acessocpf);
 
-                Console.WriteLine($"CPF = {cpfs[u]} \nTitulares = {titulares[u]}\nSaldo = {saldos[u]}\n");
+                Console.WriteLine($"CPF = {cpfs[u]} \nTitulares = {titulares[u]}\nSaldo = {saldos[u]:f2}\n");
 
                 string escolhaoquefazer;
                 do
@@ -214,6 +245,7 @@ namespace BancoApp
 
                 }
                 Console.WriteLine($"Deposito de {valordeposito} feito com sucesso.");
+                saldos[u] += valordeposito;
             }
 
         }
